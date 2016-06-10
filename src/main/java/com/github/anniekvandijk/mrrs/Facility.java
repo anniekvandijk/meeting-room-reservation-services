@@ -5,15 +5,25 @@ package com.github.anniekvandijk.mrrs;
  */
 public class Facility {
 
-    private String fac;
+    private String facility;
 
-    public Facility(String fac) {
-        this.fac = fac;
+    public Facility(String facility) {
+
+        if (null == facility) {
+          throw new IllegalArgumentException("Facility can not be empty");
+        }
+        facility = facility.trim();
+
+        if ("".equals(facility)) {
+            throw new IllegalArgumentException("Facility can not be empty");
+        }
+
+        this.facility = facility;
 
     }
 
     public String getFacility() {
-        return fac;
+        return facility;
     }
 
 }
