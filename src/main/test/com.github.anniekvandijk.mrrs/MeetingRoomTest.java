@@ -1,12 +1,10 @@
 package com.github.anniekvandijk.mrrs;
 
-import org.junit.Test;
+import org.junit.*;
+import java.util.Set;
+import java.util.TreeSet;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 /**
  * Created by in754dij on 7-6-2016.
@@ -34,7 +32,8 @@ public class MeetingRoomTest {
         String location = "Z1507";
         int capacity = 2;
 
-        List<Facility> facilities = new ArrayList<>();
+        Set<Facility> facilities = new TreeSet<>();
+
         facilities.add(new Facility("Beamer"));
         facilities.add(new Facility("Telephone"));
 
@@ -43,8 +42,7 @@ public class MeetingRoomTest {
         assertEquals("Meetingroom 1", meetingRoom.getName());
         assertEquals("Z1507", meetingRoom.getLocation());
         assertEquals(2, meetingRoom.getCapacity());
+        assertEquals(facilities, meetingRoom.getFacilities());
 
-        assertEquals(2, meetingRoom.getFacilities().size());
-      //  assertEquals(List<"Beamer", "Telephone"> , meetingRoom.getFacilities().toArray());
     }
  }
