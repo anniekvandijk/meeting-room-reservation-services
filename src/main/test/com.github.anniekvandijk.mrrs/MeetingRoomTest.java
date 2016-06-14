@@ -25,6 +25,66 @@ public class MeetingRoomTest {
         assertEquals(2, meetingRoom.getCapacity());
     }
 
+    @Test (expected = IllegalArgumentException.class)
+    public void nameNotNull() {
+
+        String name = null;
+        String location = "Z1507";
+        int capacity = 2;
+
+        new MeetingRoom(name, location, capacity);
+    }
+
+    @Test (expected = IllegalArgumentException.class)
+    public void nameNotEmpty() {
+
+        String name = "";
+        String location = "Z1507";
+        int capacity = 2;
+
+        new MeetingRoom(name, location, capacity);
+    }
+
+    @Test (expected = IllegalArgumentException.class)
+    public void locationNotNull() {
+
+        String name = "Meetingroom 1";
+        String location = null;
+        int capacity = 2;
+
+        new MeetingRoom(name, location, capacity);
+    }
+
+    @Test (expected = IllegalArgumentException.class)
+    public void locationNotEmpty() {
+
+        String name = "Meetingroom 1";
+        String location = " ";
+        int capacity = 2;
+
+        new MeetingRoom(name, location, capacity);
+    }
+
+    @Test (expected = IllegalArgumentException.class)
+    public void capacityNotNull() {
+
+        String name = "Meetingroom 1";
+        String location = "Z1507";
+        int capacity = 0;
+
+        new MeetingRoom(name, location, capacity);
+    }
+
+    @Test (expected = IllegalArgumentException.class)
+    public void capacityNotNegative() {
+
+        String name = "Meetingroom 1";
+        String location = "Z1507";
+        int capacity = -1;
+
+        new MeetingRoom(name, location, capacity);
+    }
+
     @Test
     public void createMeetingRoomWithFacilities() {
 

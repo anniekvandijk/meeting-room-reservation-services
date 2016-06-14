@@ -1,9 +1,9 @@
 package com.github.anniekvandijk.mrrs;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
+
+import static org.apache.commons.lang3.StringUtils.trimToNull;
 
 /**
  * Created by in754dij on 7-6-2016.
@@ -20,8 +20,20 @@ public class MeetingRoom {
     }
 
     public MeetingRoom(final String name, final String location, final int capacity, final Set<Facility> facilities) {
-        this.name = name;
-        this.location = location;
+        String nameCln = trimToNull(name);
+        if (nameCln == null) {
+            throw new IllegalArgumentException("Name can not be empty");
+        }
+        String locationCln = trimToNull(location);
+        if (locationCln == null) {
+            throw new IllegalArgumentException("Location can not be empty");
+        }
+        if (capacity <= 0 ) {
+            throw new IllegalArgumentException("Capacity can not be empty");
+        }
+
+        this.name = nameCln;
+        this.location = locationCln;
         this.capacity = capacity;
         this.facilities = facilities;
     }
