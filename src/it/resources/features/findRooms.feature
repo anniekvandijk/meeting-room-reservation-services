@@ -1,5 +1,6 @@
 Feature: Find meetingrooms with finding options
 
+  @run
   Scenario: find all meeting rooms
     Given The applications has 20 rooms
     When I look for a meeting room with no specific argument

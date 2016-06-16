@@ -83,6 +83,8 @@
             <artifactId>jersey-media-moxy</artifactId>
         </dependency>
         -->
+
+        <!-- Test dependencies -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -92,13 +94,19 @@
         <dependency>
             <groupId>info.cukes</groupId>
             <artifactId>cucumber-java</artifactId>
+            <version>1.2.4</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>info.cukes</groupId>
+            <artifactId>cucumber-junit</artifactId>
             <version>1.2.0</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>info.cukes</groupId>
-            <artifactId>cucumber-java</artifactId>
-            <version>1.2.4</version>
+            <artifactId>cucumber-core</artifactId>
+            <version>1.2.0</version>
             <scope>test</scope>
         </dependency>
 
