@@ -9,10 +9,10 @@ import cucumber.api.junit.Cucumber;
  */
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        plugin = { "html:target/cucumber/report.html", "json:target/cucumber-report.json" },
-        features = { "src/it/resources/features" },
-        tags = { "@run"}
+        plugin = { "html:target/cucumber/report.html", "json:target/cucumber-report.json" }
+        ,features = { "src/it/resources/features" }
+    //    ,tags = { "@run"}
 )
-public class RunCucumberIT {
-    //
+public class RunCucumberTests {
+    // No implementation required
 }
