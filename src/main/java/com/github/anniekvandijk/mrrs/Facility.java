@@ -7,25 +7,25 @@ import org.apache.commons.lang3.StringUtils;
  */
 public class Facility implements Comparable<Facility> {
 
-    private String facility;
+    private String name;
 
-    public Facility(String facility) {
+    public Facility(String name) {
 
-        final String facilityCln = StringUtils.trimToNull(facility);
-        if (facilityCln == null) {
+        final String nameCln = StringUtils.trimToNull(name);
+        if (nameCln == null) {
             throw new IllegalArgumentException("Facility can not be empty");
         }
 
-        this.facility = facilityCln;
+        this.name = nameCln;
 
     }
 
-    public String getFacility() {
-        return facility;
+    public String getName() {
+        return name;
     }
 
     @Override
     public int compareTo(final Facility other) {
-        return this.getFacility().compareTo(other.getFacility());
+        return this.getName().compareTo(other.getName());
     }
 }

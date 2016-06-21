@@ -17,30 +17,30 @@ public class FacilityTest {
     @Test
     public void createFacilityComputer() {
 
-        String fac = "Computer";
-        Facility facility = new Facility(fac);
+        String name = "Computer";
+        Facility facility = new Facility(name);
 
-        assertEquals("Computer", facility.getFacility());
+        assertEquals("Computer", facility.getName());
 
     }
 
     @Test
     public void createFacilityBeamer() {
 
-        String fac = "Beamer";
-        Facility facility = new Facility(fac);
+        String name = "Beamer";
+        Facility facility = new Facility(name);
 
-        assertEquals("Beamer", facility.getFacility());
+        assertEquals("Beamer", facility.getName());
 
     }
 
     @Test
     public void createFacilityWithSpaces() {
 
-        String fac = "      Beamer";
-        Facility facility = new Facility(fac);
+        String name = "      Beamer";
+        Facility facility = new Facility(name);
 
-        assertEquals("Beamer", facility.getFacility());
+        assertEquals("Beamer", facility.getName());
 
     }
 
@@ -50,8 +50,8 @@ public class FacilityTest {
         exception.expect(IllegalArgumentException.class);
         exception.expectMessage("Facility can not be empty");
 
-        String fac = "";
-        new Facility(fac);
+        String facility = "";
+        new Facility(facility);
 
     }
 
@@ -61,8 +61,8 @@ public class FacilityTest {
         exception.expect(IllegalArgumentException.class);
         exception.expectMessage("Facility can not be empty");
 
-        String fac = null;
-        new Facility(fac);
+        String facility = null;
+        new Facility(facility);
 
     }
 
