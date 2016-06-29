@@ -1,5 +1,6 @@
 package com.github.anniekvandijk.mrrs;
 
+import org.hamcrest.core.IsEqual;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -48,7 +49,7 @@ public class FacilityTest {
     public void createFacilityEmptyString() {
 
         exception.expect(IllegalArgumentException.class);
-        exception.expectMessage("Facility can not be empty");
+        exception.expectMessage(new IsEqual<String>("Facility can not be empty"));
 
         String facility = "";
         new Facility(facility);
@@ -59,7 +60,7 @@ public class FacilityTest {
     public void createFacilityNull() {
 
         exception.expect(IllegalArgumentException.class);
-        exception.expectMessage("Facility can not be empty");
+        exception.expectMessage(new IsEqual<String>("Facility can not be empty"));
 
         String facility = null;
         new Facility(facility);
