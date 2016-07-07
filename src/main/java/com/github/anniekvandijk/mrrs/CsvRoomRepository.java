@@ -35,6 +35,7 @@ public class CsvRoomRepository extends RoomRepository {
         String[] nextLine = null;
         while ((nextLine = csvReader.readNext()) != null) {
             Set<Facility> facilities = new TreeSet<>();
+            // TODO TIP: StringTokenizer
             facilities.add(new Facility(nextLine[COL_FACILITIES]));
             add(new MeetingRoom(nextLine[COL_NAME], nextLine[COL_LOCATION], Integer.parseInt(nextLine[COL_CAPACITY]), facilities));
             logger.info("line: " + Arrays.toString(nextLine));
