@@ -8,7 +8,7 @@ public class RoomRepository {
     private Map<String, MeetingRoom> roomsByName = new HashMap<>();
 
 
-    public void add(MeetingRoom meetingRoom) {
+    public void add(final MeetingRoom meetingRoom) {
         if (roomsByLocation.containsKey(meetingRoom.getLocation())) {
             throw new IllegalArgumentException("Argument 'location' with value '" + meetingRoom.getLocation()
                     + "' is an already known MeetingRoom");
@@ -32,5 +32,9 @@ public class RoomRepository {
             return roomsByLocation.get(text);
         }
         return roomsByName.get(text);
+    }
+
+    public int size() {
+        return roomsByLocation.size();
     }
 }
