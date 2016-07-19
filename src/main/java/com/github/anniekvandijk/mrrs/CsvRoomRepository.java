@@ -1,6 +1,7 @@
 package com.github.anniekvandijk.mrrs;
 
 import com.opencsv.CSVReader;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -35,10 +36,17 @@ public class CsvRoomRepository extends RoomRepository {
         String[] nextLine = null;
         while ((nextLine = csvReader.readNext()) != null) {
             Set<Facility> facilities = new TreeSet<>();
-            // TODO TIP: StringTokenizer
-            facilities.add(new Facility(nextLine[COL_FACILITIES]));
+            String[] facilityList = (nextLine[COL_FACILITIES]).split(",");
+            for (String facility : facilityList) {
+                String facilityCln = StringUtils.trimToNull(facility);
+                if (facilityCln == null) {
+                    // do nothing
+                } else {
+                    facilities.add(new Facility(facilityCln));
+                }
+            }
+            logger.debug(facilities.size() + " facilities added to meetingroom " + nextLine[COL_NAME]);
             add(new MeetingRoom(nextLine[COL_NAME], nextLine[COL_LOCATION], Integer.parseInt(nextLine[COL_CAPACITY]), facilities));
-            logger.info("line: " + Arrays.toString(nextLine));
         }
         csvReader.close();
 

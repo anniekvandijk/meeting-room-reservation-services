@@ -47,9 +47,10 @@ public class CsvRoomRepositoryTest {
         room = repo.search(searchFor);
         assertEquals("Z1305", room.getLocation());
         assertEquals(14, room.getCapacity());
-        assertEquals(1, room.getFacilities().size());
+        assertEquals(2, room.getFacilities().size());
         facility = room.getFacilities().iterator().next();
         assertEquals("Beamer", facility.getName());
+        assertEquals("Telephone", facility.getName());
     }
 
     private static Reader createReader(char delimiter) {
