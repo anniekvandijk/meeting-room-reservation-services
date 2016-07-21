@@ -1,5 +1,7 @@
-package com.github.anniekvandijk.mrrs;
+package com.github.anniekvandijk.mrrs.domain;
 
+import java.util.Collections;
+import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -10,7 +12,7 @@ import static org.apache.commons.lang3.StringUtils.trimToNull;
  */
 public class MeetingRoom {
 
-    private final Set<Facility> facilities;
+    private final Set<Facility> facilities = new LinkedHashSet<>();
     private final String name;
     private final String location;
     private final int capacity;
@@ -35,7 +37,7 @@ public class MeetingRoom {
         this.name = nameCln;
         this.location = locationCln;
         this.capacity = capacity;
-        this.facilities = facilities;
+        this.facilities.addAll(facilities);
     }
 
 
@@ -52,6 +54,6 @@ public class MeetingRoom {
     }
 
     public Set<Facility> getFacilities() {
-        return facilities;
+        return Collections.unmodifiableSet(facilities);
     }
 } 

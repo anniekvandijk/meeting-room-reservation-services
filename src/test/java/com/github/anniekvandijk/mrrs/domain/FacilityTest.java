@@ -1,5 +1,6 @@
-package com.github.anniekvandijk.mrrs;
+package com.github.anniekvandijk.mrrs.domain;
 
+import com.github.anniekvandijk.mrrs.domain.Facility;
 import org.hamcrest.core.IsEqual;
 import org.junit.Rule;
 import org.junit.Test;
