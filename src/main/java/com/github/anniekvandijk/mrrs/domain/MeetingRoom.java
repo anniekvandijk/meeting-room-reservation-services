@@ -56,4 +56,15 @@ public class MeetingRoom {
     public Set<Facility> getFacilities() {
         return Collections.unmodifiableSet(facilities);
     }
+
+    public String toStringFacilities() {
+        StringBuilder bldr = new StringBuilder();
+        for (Facility facility : facilities) {
+            if (bldr.length() > 0) {
+                bldr.append(", ");
+            }
+            bldr.append(facility.getName());
+        }
+        return bldr.toString();
+    }
 } 

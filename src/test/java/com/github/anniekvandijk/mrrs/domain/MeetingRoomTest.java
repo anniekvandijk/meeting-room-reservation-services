@@ -96,48 +96,15 @@ public class MeetingRoomTest {
         int capacity = 2;
 
         Set<Facility> facilities = new TreeSet<>();
-        Facility beamer = new Facility("Beamer");
-        Facility telephone = new Facility("Telephone");
-        facilities.add(beamer);
-        facilities.add(telephone);
+        facilities.add(new Facility("Beamer"));
+        facilities.add(new Facility("Telephone"));
 
         MeetingRoom meetingRoom = new MeetingRoom(name, location, capacity, facilities);
 
         assertEquals("Meetingroom 1", meetingRoom.getName());
         assertEquals("Z1507", meetingRoom.getLocation());
         assertEquals(2, meetingRoom.getCapacity());
-        assertTrue(meetingRoom.getFacilities().contains(beamer));
-        assertTrue(meetingRoom.getFacilities().contains(telephone));
+        assertEquals("Beamer, Telephone", meetingRoom.toStringFacilities());
     }
 
-    @Test
-    public void createMeetingRoomWithFacilities2() {
-
-        String name = "Meetingroom 1";
-        String location = "Z1507";
-        int capacity = 2;
-        MeetingRoom meetingRoom = new MeetingRoom(name, location, capacity, createFacilities());
-
-        assertEquals("Meetingroom 1", meetingRoom.getName());
-        assertEquals("Z1507", meetingRoom.getLocation());
-        assertEquals(2, meetingRoom.getCapacity());
-
-        Set<Facility> facilitiesExpected = createFacilities();
-
-        assertTrue(meetingRoom.getFacilities().containsAll(facilitiesExpected));
-
-        Set<Facility> facilities = meetingRoom.getFacilities();
-        for (Facility facility : facilities) {
-            logger.info(facility.getName());
-
-        }
-    }
-
-    private Set<Facility> createFacilities() {
-        Set<Facility> facilities = new TreeSet<>();
-        facilities.add(new Facility("Beamer"));
-        facilities.add(new Facility("Telephone"));
-        return facilities;
-    }
-
- }
+}
