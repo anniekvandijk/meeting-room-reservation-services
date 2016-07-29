@@ -21,18 +21,7 @@ public class CsvRoomRepositoryTest {
     public ExpectedException exception = ExpectedException.none();
 
     @Test
-    public void addMeetingRooms() throws IOException {
-        char delimiter = ';';
-        RoomRepository repo = CsvRoomRepository.create(createReader(delimiter), delimiter);
-
-        assertEquals(3, repo.size());
-        String searchFor = "10.10";
-        assertEquals("10.10", repo.search(searchFor).getLocation());
-        assertEquals(80, repo.search(searchFor).getCapacity());
-    }
-
-    @Test
-    public void addMeetingRoomsFromFile() throws IOException {
+    public void importMeetingRoomsFromFile() throws IOException {
 
         final String workingDir = System.getProperty("user.dir");
         File file = new File(workingDir, "src/test/resources/meetingrooms.csv");
@@ -66,7 +55,7 @@ public class CsvRoomRepositoryTest {
     }
 
     @Test
-    public void addMeetingRoomsImportFileExportFile() throws IOException {
+    public void exportMeetingRooms() throws IOException {
         final String workingDir = System.getProperty("user.dir");
         File file = new File(workingDir, "src/test/resources/meetingrooms.csv");
         Reader reader = new FileReader(file) ;
@@ -84,6 +73,17 @@ public class CsvRoomRepositoryTest {
         CsvRoomRepository.exportBy(writer, repo);
         writer.flush();
         writer.close();
+    }
+
+    @Test
+    public void importMeetingRoomsFromString() throws IOException {
+        char delimiter = ';';
+        RoomRepository repo = CsvRoomRepository.create(createReader(delimiter), delimiter);
+
+        assertEquals(3, repo.size());
+        String searchFor = "10.10";
+        assertEquals("10.10", repo.search(searchFor).getLocation());
+        assertEquals(80, repo.search(searchFor).getCapacity());
     }
 
     private static Reader createReader(char delimiter) {
