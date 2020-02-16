@@ -11,8 +11,7 @@ import cucumber.api.junit.Cucumber;
 @CucumberOptions(
         plugin = { "html:target/cucumber/report.html", "json:target/cucumber-report.json" }
         ,features = { "src/it/resources/features" }
-        ,tags = { "@run"}
 )
-public class RunCucumberTests {
+public class RunCucumberIT {
     // No implementation required
 }

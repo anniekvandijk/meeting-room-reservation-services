@@ -1,6 +1,5 @@
 Feature: Rooms require a location and capacity. Optional they have a name and facilities.
 
-  @run
   Scenario: Room can be found by location
     Given a room with name "Berlin", location "1.12" and capacity 12
     And which has facility "whiteboard"
