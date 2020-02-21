@@ -8,88 +8,64 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
 
 public class RoomRepositoryTest {
-
-    String name;
-    String location;
-    int capacity;
-
-    @Rule
-    public ExpectedException exception = ExpectedException.none();
 
     @Test
     public void addMeetingRoom() {
 
-        name = "Meetingroom 1";
-        location = "Z1507";
-        capacity = 2;
+        String name = "Meetingroom 1";
+        String location = "Z1507";
+        int capacity = 2;
         MeetingRoom meetingRoom = new MeetingRoom(name, location, capacity);
 
         RoomRepository roomRepository = new RoomRepository();
 
         roomRepository.add(meetingRoom);
 
-        String zoekLocation = "Z1507";
-        assertEquals(meetingRoom, roomRepository.search(zoekLocation));
+        String expectedLocation = "Z1507";
+        assertEquals(meetingRoom.getLocation(), roomRepository.getByLocation(expectedLocation).iterator().next().getLocation());
     }
 
     @Test
-    public void addDoubleMeetingRoom() {
-
-        exception.expect(IllegalArgumentException.class);
-        exception.expectMessage(new IsEqual<String>("Argument 'location' with value 'Z1510' is an already known MeetingRoom"));
+    public void addMeetingRoomWithSameName() {
 
         RoomRepository roomRepository = new RoomRepository();
 
-        name = "Meetingroom 1";
-        location = "Z1510";
-        capacity = 2;
+        String name = "Meetingroom 1";
+        String location = "Z1510";
+        int capacity = 2;
         MeetingRoom meetingRoom1 = new MeetingRoom(name, location, capacity);
         roomRepository.add(meetingRoom1);
 
-        name = "Meetingroom 2";
-        location = "Z1510";
-        capacity = 4;
-        MeetingRoom meetingRoom2 = new MeetingRoom(name, location, capacity);
-        roomRepository.add(meetingRoom2);
+        String name2 = "Meetingroom 1";
+        String location2 = "Z1511";
+        int capacity2 = 4;
+        MeetingRoom meetingRoom2 = new MeetingRoom(name2, location2, capacity2);
+
+        IllegalArgumentException exeption = assertThrows(IllegalArgumentException.class, () -> roomRepository.add(meetingRoom2));
+        assertEquals("Argument 'name' with value 'Meetingroom 1' is an already known MeetingRoom", exeption.getMessage());
     }
 
     @Test
-    public void SearchNonExistingMeetingRoom() {
-
-        exception.expect(IllegalArgumentException.class);
-        exception.expectMessage(new IsEqual<String>("Argument 'text' with value 'Z1506' is not a known MeetingRoom"));
-
-        name = "Meetingroom 1";
-        location = "Z1507";
-        capacity = 2;
-        MeetingRoom meetingRoom = new MeetingRoom(name, location, capacity);
+    public void addMeetingRoomWithSameLocation() {
 
         RoomRepository roomRepository = new RoomRepository();
 
-        roomRepository.add(meetingRoom);
+        String name = "Meetingroom 1";
+        String location = "Z1510";
+        int capacity = 2;
+        MeetingRoom meetingRoom1 = new MeetingRoom(name, location, capacity);
+        roomRepository.add(meetingRoom1);
 
-        roomRepository.search("Z1506");
-    }
+        String name2 = "Meetingroom 2";
+        String location2 = "Z1510";
+        int capacity2 = 4;
+        MeetingRoom meetingRoom2 = new MeetingRoom(name2, location2, capacity2);
 
-    @Test (expected = IllegalArgumentException.class)
-    public void SearchNonExistingMeetingRoom2() {
-        name = "Meetingroom 1";
-        location = "Z1507";
-        capacity = 2;
-        MeetingRoom meetingRoom = new MeetingRoom(name, location, capacity);
-
-        RoomRepository roomRepository = new RoomRepository();
-        roomRepository.add(meetingRoom);
-
-        try {
-            roomRepository.search("Z1506");
-        }
-        catch (IllegalArgumentException iae) {
-            assertEquals("Argument 'text' with value 'Z1506' is not a known MeetingRoom", iae.getMessage());
-            throw iae;
-        }
-
+        IllegalArgumentException exeption = assertThrows(IllegalArgumentException.class, () -> roomRepository.add(meetingRoom2));
+        assertEquals("Argument 'location' with value 'Z1510' is an already known MeetingRoom", exeption.getMessage());
     }
 }
+

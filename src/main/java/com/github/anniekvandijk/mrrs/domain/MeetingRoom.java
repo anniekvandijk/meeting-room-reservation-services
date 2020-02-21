@@ -1,9 +1,6 @@
 package com.github.anniekvandijk.mrrs.domain;
 
-import java.util.Collections;
-import java.util.LinkedHashSet;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 import static org.apache.commons.lang3.StringUtils.trimToNull;
 
@@ -12,16 +9,16 @@ import static org.apache.commons.lang3.StringUtils.trimToNull;
  */
 public class MeetingRoom {
 
-    private final Set<Facility> facilities = new LinkedHashSet<>();
+    private final List<Facility> facilities = new ArrayList<>();
     private final String name;
     private final String location;
     private final int capacity;
 
     public MeetingRoom(final String name, final String location, final int capacity) {
-        this(name, location, capacity, new TreeSet<>());
+        this(name, location, capacity, new ArrayList<Facility>());
     }
 
-    public MeetingRoom(final String name, final String location, final int capacity, final Set<Facility> facilities) {
+    public MeetingRoom(final String name, final String location, final int capacity, final List<Facility> facilities) {
         String nameCln = trimToNull(name);
         if (nameCln == null) {
             throw new IllegalArgumentException("Name can not be empty");
@@ -31,7 +28,7 @@ public class MeetingRoom {
             throw new IllegalArgumentException("Location can not be empty");
         }
         if (capacity <= 0 ) {
-            throw new IllegalArgumentException("Capacity can not be empty");
+            throw new IllegalArgumentException("Capacity can not be null or negative");
         }
 
         this.name = nameCln;
@@ -53,8 +50,8 @@ public class MeetingRoom {
         return capacity;
     }
 
-    public Set<Facility> getFacilities() {
-        return Collections.unmodifiableSet(facilities);
+    public List<Facility> getFacilities() {
+        return facilities;
     }
 
     public String toStringFacilities() {

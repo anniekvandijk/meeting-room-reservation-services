@@ -12,7 +12,7 @@
     <properties>
         <jersey.version>2.23</jersey.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <cucumber.version>1.2.5</cucumber.version>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <slf4j.version>1.5.6</slf4j.version>
     </properties>
 
@@ -152,22 +152,16 @@
             <version>4.13</version>
             <scope>test</scope>
         </dependency>
+            <dependency>
+                <groupId>io.cucumber</groupId>
+                <artifactId>cucumber-java</artifactId>
+                <version>5.3.0</version>
+                <scope>test</scope>
+            </dependency>
         <dependency>
-            <groupId>info.cukes</groupId>
-            <artifactId>cucumber-java</artifactId>
-            <version>${cucumber.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>info.cukes</groupId>
+            <groupId>io.cucumber</groupId>
             <artifactId>cucumber-junit</artifactId>
-            <version>${cucumber.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>info.cukes</groupId>
-            <artifactId>cucumber-core</artifactId>
-            <version>${cucumber.version}</version>
+            <version>5.3.0</version>
             <scope>test</scope>
         </dependency>
 

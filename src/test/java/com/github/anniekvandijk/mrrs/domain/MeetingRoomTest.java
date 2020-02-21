@@ -12,7 +12,6 @@ import static org.junit.Assert.*;
  * Created by in754dij on 7-6-2016.
  */
 public class MeetingRoomTest {
-    private static Logger logger = LoggerFactory.getLogger(MeetingRoomTest.class);
 
     @Test
     public void createMeetingRoom() {
@@ -28,64 +27,18 @@ public class MeetingRoomTest {
         assertEquals(2, meetingRoom.getCapacity());
     }
 
-    @Test (expected = IllegalArgumentException.class)
-    public void nameNotNull() {
+    @Test
+    public void createMeetingRoomWithSpaces() {
 
-        String name = null;
-        String location = "Z1507";
+        String name = "    Meetingroom 1";
+        String location = "Z1507    ";
         int capacity = 2;
 
-        new MeetingRoom(name, location, capacity);
-    }
+        MeetingRoom meetingRoom = new MeetingRoom(name, location, capacity);
 
-    @Test (expected = IllegalArgumentException.class)
-    public void nameNotEmpty() {
-
-        String name = "";
-        String location = "Z1507";
-        int capacity = 2;
-
-        new MeetingRoom(name, location, capacity);
-    }
-
-    @Test (expected = IllegalArgumentException.class)
-    public void locationNotNull() {
-
-        String name = "Meetingroom 1";
-        String location = null;
-        int capacity = 2;
-
-        new MeetingRoom(name, location, capacity);
-    }
-
-    @Test (expected = IllegalArgumentException.class)
-    public void locationNotEmpty() {
-
-        String name = "Meetingroom 1";
-        String location = " ";
-        int capacity = 2;
-
-        new MeetingRoom(name, location, capacity);
-    }
-
-    @Test (expected = IllegalArgumentException.class)
-    public void capacityNotNull() {
-
-        String name = "Meetingroom 1";
-        String location = "Z1507";
-        int capacity = 0;
-
-        new MeetingRoom(name, location, capacity);
-    }
-
-    @Test (expected = IllegalArgumentException.class)
-    public void capacityNotNegative() {
-
-        String name = "Meetingroom 1";
-        String location = "Z1507";
-        int capacity = -1;
-
-        new MeetingRoom(name, location, capacity);
+        assertEquals("Meetingroom 1", meetingRoom.getName());
+        assertEquals("Z1507", meetingRoom.getLocation());
+        assertEquals(2, meetingRoom.getCapacity());
     }
 
     @Test
@@ -95,7 +48,7 @@ public class MeetingRoomTest {
         String location = "Z1507";
         int capacity = 2;
 
-        Set<Facility> facilities = new TreeSet<>();
+        List<Facility> facilities = new ArrayList<>();
         facilities.add(new Facility("Beamer"));
         facilities.add(new Facility("Telephone"));
 
@@ -107,4 +60,69 @@ public class MeetingRoomTest {
         assertEquals("Beamer, Telephone", meetingRoom.toStringFacilities());
     }
 
+    @Test
+    public void nameNotNull() {
+
+        String name = null;
+        String location = "Z1507";
+        int capacity = 2;
+
+        IllegalArgumentException exeption = assertThrows(IllegalArgumentException.class, () -> new MeetingRoom(name, location, capacity));
+        assertEquals("Name can not be empty", exeption.getMessage());
+    }
+
+    @Test
+    public void nameNotEmpty() {
+
+        String name = "";
+        String location = "Z1507";
+        int capacity = 2;
+
+        IllegalArgumentException exeption = assertThrows(IllegalArgumentException.class, () -> new MeetingRoom(name, location, capacity));
+        assertEquals("Name can not be empty", exeption.getMessage());
+    }
+
+    @Test
+    public void locationNotNull() {
+
+        String name = "Meetingroom 1";
+        String location = null;
+        int capacity = 2;
+
+        IllegalArgumentException exeption = assertThrows(IllegalArgumentException.class, () -> new MeetingRoom(name, location, capacity));
+        assertEquals("Location can not be empty", exeption.getMessage());
+    }
+
+    @Test
+    public void locationNotEmpty() {
+
+        String name = "Meetingroom 1";
+        String location = " ";
+        int capacity = 2;
+
+        IllegalArgumentException exeption = assertThrows(IllegalArgumentException.class, () -> new MeetingRoom(name, location, capacity));
+        assertEquals("Location can not be empty", exeption.getMessage());
+    }
+
+    @Test
+    public void capacityNotNull() {
+
+        String name = "Meetingroom 1";
+        String location = "Z1507";
+        int capacity = 0;
+
+        IllegalArgumentException exeption = assertThrows(IllegalArgumentException.class, () -> new MeetingRoom(name, location, capacity));
+        assertEquals("Capacity can not be null or negative", exeption.getMessage());
+    }
+
+    @Test
+    public void capacityNotNegative() {
+
+        String name = "Meetingroom 1";
+        String location = "Z1507";
+        int capacity = -1;
+
+        IllegalArgumentException exeption = assertThrows(IllegalArgumentException.class, () -> new MeetingRoom(name, location, capacity));
+        assertEquals("Capacity can not be null or negative", exeption.getMessage());
+    }
 }

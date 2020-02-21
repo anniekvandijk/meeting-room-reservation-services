@@ -3,58 +3,63 @@ package com.github.anniekvandijk.mrrs.repository;
 import com.github.anniekvandijk.mrrs.domain.MeetingRoom;
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class RoomRepository {
-    private Map<String, MeetingRoom> roomsByLocation = new HashMap<>();
-    private Map<String, MeetingRoom> roomsByName = new HashMap<>();
+    private List<MeetingRoom> meetingRooms;
 
+    public RoomRepository() {
+        this.meetingRooms = new ArrayList<>();
+    }
 
     public void add(final MeetingRoom meetingRoom) {
-        if (roomsByLocation.containsKey(meetingRoom.getLocation())) {
+        if (meetingRooms.stream().anyMatch(x -> x.getLocation().equals(meetingRoom.getLocation()))) {
             throw new IllegalArgumentException("Argument 'location' with value '" + meetingRoom.getLocation()
                     + "' is an already known MeetingRoom");
         }
-        roomsByLocation.put(meetingRoom.getLocation(), meetingRoom);
-
-        if (roomsByName.containsKey(meetingRoom.getName())) {
+        if (meetingRooms.stream().anyMatch(x -> x.getName().equals(meetingRoom.getName()))) {
             throw new IllegalArgumentException("Argument 'name' with value '" + meetingRoom.getName()
                     + "' is an already known MeetingRoom");
         }
-        roomsByName.put(meetingRoom.getName(), meetingRoom);
+        meetingRooms.add(meetingRoom);
     }
 
-    public MeetingRoom search(String text) {
-        if ((! roomsByLocation.containsKey(text)) && (! roomsByName.containsKey(text))) {
-            throw new IllegalArgumentException("Argument 'text' with value '" + text
-                    + "' is not a known MeetingRoom");
-        }
-
-        if (roomsByLocation.containsKey(text)) {
-            return roomsByLocation.get(text);
-        }
-        return roomsByName.get(text);
-    }
-
-    public int size() {
-        return roomsByLocation.size();
-    }
-
-    public Set<String> getLocations() {
-        return roomsByLocation.keySet();
-    }
-
-    public MeetingRoom getByLocation(final String location) {
+    public List<MeetingRoom> getByLocation(final String location) {
         final String locationCln = StringUtils.trimToNull(location);
         if (locationCln == null) {
             throw new IllegalArgumentException("Argument 'location' should not be null.");
         }
-        if (! roomsByLocation.containsKey(locationCln)) {
-            throw new IllegalArgumentException("Argument 'location' with value '" + locationCln + "' not a known location.");
-        }
+        return filteredMeetingRooms(x -> x.getLocation().equals(locationCln));
+    }
 
-        return roomsByLocation.get(location);
+    public List<MeetingRoom> getByName(final String name) {
+        final String nameCln = StringUtils.trimToNull(name);
+        if (nameCln == null) {
+            throw new IllegalArgumentException("Argument 'name' should not be null.");
+        }
+        return filteredMeetingRooms(x -> x.getName().equals(nameCln));
+    }
+
+    public List<MeetingRoom> getByFacility(final String facility) {
+        final String facilityCln = StringUtils.trimToNull(facility);
+        if (facilityCln == null) {
+            throw new IllegalArgumentException("Argument 'facility' should not be null.");
+        }
+        return filteredMeetingRooms(x -> x.getFacilities()
+            .stream()
+            .anyMatch(y -> y.getName().equals(facilityCln)));
+    }
+
+    public List<MeetingRoom> getByMinimalCapacity(final int capacity) {
+        return filteredMeetingRooms(x -> x.getCapacity() >= capacity);
+    }
+
+    private List<MeetingRoom> filteredMeetingRooms (Predicate<? super MeetingRoom> filter) {
+        return meetingRooms
+                .stream()
+                .filter(filter)
+                .collect(Collectors.toList());
     }
 }
