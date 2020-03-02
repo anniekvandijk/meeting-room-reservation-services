@@ -1,4 +1,4 @@
-package com.github.anniekvandijk.mrrs.it;
+package integrationTests;
 
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
@@ -9,8 +9,8 @@ import org.junit.runner.RunWith;
  */
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        plugin = { "json:target/cucumber.json" },
-        features = "src/it/resources/features",
+        plugin = { "json:target/cucumber/cucumber.json" },
+        features = "src/test/resources/features",
         strict = true
 )
 public class RunCucumberIT {

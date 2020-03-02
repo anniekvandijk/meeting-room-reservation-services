@@ -1,8 +1,8 @@
-package com.github.anniekvandijk.mrrs.it;
+package integrationTests;
 
-import com.github.anniekvandijk.mrrs.domain.Facility;
-import com.github.anniekvandijk.mrrs.domain.MeetingRoom;
-import com.github.anniekvandijk.mrrs.repository.RoomRepository;
+import unitTests.domain.Facility;
+import unitTests.domain.MeetingRoom;
+import unitTests.repository.RoomRepository;
 import org.junit.Assert;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;

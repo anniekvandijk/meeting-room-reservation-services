@@ -48,65 +48,20 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
+
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
-                <version>2.19.1</version>
+                <version>2.22.0</version>
                 <executions>
                     <execution>
-                        <id>run-integration-tests</id>
                         <goals>
                             <goal>integration-test</goal>
                             <goal>verify</goal>
                         </goals>
-                        <configuration>
-                            <includes>
-                                <include>**/RunCucumberIT.java</include>
-                            </includes>
-                            <testSourceDirectory>src/it/java</testSourceDirectory>
-                        </configuration>
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.19.1</version>
-                <executions>
-                    <execution>
-                        <id>unit-tests</id>
-                        <phase>test</phase>
-                        <goals>
-                            <goal>test</goal>
-                        </goals>
-                        <configuration>
-                            <skip>false</skip>
-                            <includes>
-                                <include>**/*Test.java</include>
-                            </includes>
-                            <excludes>
-                                <exclude>**/*IT.java</exclude>
-                            </excludes>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>integration-tests</id>
-                        <phase>integration-test</phase>
-                        <goals>
-                            <goal>test</goal>
-                        </goals>
-                        <configuration>
-                            <skip>false</skip>
-                            <includes>
-                                <include>**/RunCucumberIT.java</include>
-                            </includes>
-                            <excludes>
-                                <exclude>**/*Test.java</exclude>
-                            </excludes>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
+
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
@@ -126,6 +81,7 @@
                     </execution>
                 </executions>
             </plugin>
+
             <plugin>
                 <groupId>com.assertthat.plugins</groupId>
                 <artifactId>assertthat-bdd-maven-plugin</artifactId>
@@ -149,11 +105,11 @@
                     <execution>
                         <configuration>
                             <!--Optional - default ./features-->
-                            <outputFolder>src/test/resources/com/assertthat/features</outputFolder>
+                            <outputFolder>src/test/resources/features</outputFolder>
                             <!--Optional - all features downloaded by default - should be a valid JQL-->
 <!--                            <jql>project = KP1 AND key in ('XXX-1')</jql>-->
                             <!--Optional - default automated (can be one of: manual/automated/both)-->
-                            <mode>automated</mode>
+                            <mode>both</mode>
                         </configuration>
                         <id>features</id>
                         <goals>
@@ -169,7 +125,7 @@
                         <phase>post-integration-test</phase>
                         <configuration>
                             <!--Optional - default ./report-->
-                            <jsonReportFolder>target/report/surefire-reports/cucumber/</jsonReportFolder>
+                            <jsonReportFolder>target/cucumber/</jsonReportFolder>
                             <!--Optional - default - **/*.json -->
                             <jsonReportIncludePattern>**/cucumber.json</jsonReportIncludePattern>
                         </configuration>

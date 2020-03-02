@@ -1,10 +1,6 @@
-package com.github.anniekvandijk.mrrs.domain;
+package unitTests.domain;
 
-import com.github.anniekvandijk.mrrs.domain.Facility;
-import org.hamcrest.core.IsEqual;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;

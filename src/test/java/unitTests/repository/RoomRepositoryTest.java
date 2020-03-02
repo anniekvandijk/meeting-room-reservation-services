@@ -1,11 +1,7 @@
-package com.github.anniekvandijk.mrrs.repository;
+package unitTests.repository;
 
-import com.github.anniekvandijk.mrrs.domain.MeetingRoom;
-import com.github.anniekvandijk.mrrs.repository.RoomRepository;
-import org.hamcrest.core.IsEqual;
-import org.junit.Rule;
+import unitTests.domain.MeetingRoom;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
