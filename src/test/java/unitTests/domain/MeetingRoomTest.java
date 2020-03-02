@@ -1,5 +1,6 @@
 package unitTests.domain;
 
+import com.adaptavist.tm4j.junit.annotation.TestCase;
 import org.junit.*;
 import java.util.*;
 
@@ -11,6 +12,7 @@ import static org.junit.Assert.*;
 public class MeetingRoomTest {
 
     @Test
+    @TestCase(name = "Create meeting room")
     public void createMeetingRoom() {
 
         String name = "Meetingroom 1";
@@ -25,6 +27,7 @@ public class MeetingRoomTest {
     }
 
     @Test
+    @TestCase(name = "Create meeting room with spaces")
     public void createMeetingRoomWithSpaces() {
 
         String name = "    Meetingroom 1";
@@ -39,6 +42,7 @@ public class MeetingRoomTest {
     }
 
     @Test
+    @TestCase(name = "Create meeting room with facilities")
     public void createMeetingRoomWithFacilities() {
 
         String name = "Meetingroom 1";
@@ -58,6 +62,7 @@ public class MeetingRoomTest {
     }
 
     @Test
+    @TestCase(name = "Meeting room name can not be null")
     public void nameNotNull() {
 
         String name = null;
@@ -69,6 +74,7 @@ public class MeetingRoomTest {
     }
 
     @Test
+    @TestCase(name = "Meeting room name can not be empty")
     public void nameNotEmpty() {
 
         String name = "";
@@ -80,6 +86,7 @@ public class MeetingRoomTest {
     }
 
     @Test
+    @TestCase(name = "Meeting room location can not be null")
     public void locationNotNull() {
 
         String name = "Meetingroom 1";
@@ -91,6 +98,7 @@ public class MeetingRoomTest {
     }
 
     @Test
+    @TestCase(name = "Meeting room location can not be empty")
     public void locationNotEmpty() {
 
         String name = "Meetingroom 1";
