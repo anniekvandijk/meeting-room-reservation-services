@@ -35,4 +35,8 @@ Feature: Jira TM4J test Rooms require a location and capacity. Optional they hav
     When I look for a room with the facility "beamer"
     Then I will find 1 room
 
+  Scenario: Extra testcase
+    When I look for a room with the facility "beamer"
+    Then I will find 1 room
+
 
