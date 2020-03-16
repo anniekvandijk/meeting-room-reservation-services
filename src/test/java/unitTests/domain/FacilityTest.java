@@ -1,5 +1,6 @@
 package unitTests.domain;
 
+import com.github.anniekvandijk.mrrs.domain.Facility;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

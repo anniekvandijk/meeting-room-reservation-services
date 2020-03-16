@@ -1,6 +1,6 @@
-package unitTests.repository;
+package com.github.anniekvandijk.mrrs.repository;
 
-import unitTests.domain.MeetingRoom;
+import com.github.anniekvandijk.mrrs.domain.MeetingRoom;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.*;

@@ -1,6 +1,8 @@
 package unitTests.domain;
 
 import com.adaptavist.tm4j.junit.annotation.TestCase;
+import com.github.anniekvandijk.mrrs.domain.Facility;
+import com.github.anniekvandijk.mrrs.domain.MeetingRoom;
 import org.junit.*;
 import java.util.*;
 

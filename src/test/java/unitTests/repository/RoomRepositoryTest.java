@@ -1,6 +1,7 @@
 package unitTests.repository;
 
-import unitTests.domain.MeetingRoom;
+import com.github.anniekvandijk.mrrs.domain.MeetingRoom;
+import com.github.anniekvandijk.mrrs.repository.RoomRepository;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

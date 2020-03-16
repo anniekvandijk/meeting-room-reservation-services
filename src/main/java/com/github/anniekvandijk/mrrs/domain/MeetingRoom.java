@@ -1,4 +1,4 @@
-package unitTests.domain;
+package com.github.anniekvandijk.mrrs.domain;
 
 import java.util.*;
 
