@@ -1,5 +1,5 @@
 # language: en
-Feature: Jira TM4J test Rooms require a location and capacity. Optional they have a name and facilities.
+Feature: Integration tests
 
   Background: Testdata
 
@@ -31,7 +31,7 @@ Feature: Jira TM4J test Rooms require a location and capacity. Optional they hav
     And the room with name "Paris" should be returned
     And the room with name "Amsterdam" should be returned
 
-  Scenario: Failing test rename 2
+  Scenario: Failing test
     When I look for a room with the facility "beamer"
     Then I will find 1 room
 
