@@ -31,7 +31,7 @@ Feature: Jira TM4J test Rooms require a location and capacity. Optional they hav
     And the room with name "Paris" should be returned
     And the room with name "Amsterdam" should be returned
 
-  Scenario: Failing test rename
+  Scenario: Failing test rename 2
     When I look for a room with the facility "beamer"
     Then I will find 1 room
 
