@@ -35,5 +35,9 @@ Feature: Integration tests
     When I look for a room with the facility "beamer"
     Then I will find 1 room
 
+  Scenario: Extra test
+    When I look for a room with the facility "beamer"
+    Then I will find 2 rooms
+
 
 
