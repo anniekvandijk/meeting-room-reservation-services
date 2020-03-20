@@ -31,13 +31,8 @@ Feature: Integration tests
     And the room with name "Paris" should be returned
     And the room with name "Amsterdam" should be returned
 
-  Scenario: Failing test
+  Scenario: Failing test fix
     When I look for a room with the facility "beamer"
-    Then I will find 1 room
-
-  Scenario: Extra test
-    When I look for a room with the facility "beamer"
-    Then I will find 2 rooms
-
+    Then I will find 2 room
 
 
