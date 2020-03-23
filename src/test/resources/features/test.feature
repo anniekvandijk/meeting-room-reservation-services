@@ -33,6 +33,6 @@ Feature: Integration tests
 
   Scenario: Failing test fix
     When I look for a room with the facility "beamer"
-    Then I will find 1 room
+    Then I will find 2 rooms
 
 
