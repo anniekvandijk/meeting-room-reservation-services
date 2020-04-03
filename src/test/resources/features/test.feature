@@ -34,6 +34,10 @@ Feature: Integration tests
   Scenario: Failing test fix
     When I look for a room with the facility "beamer"
     Then I will find 2 rooms
+    
+Scenario: New Scenario from Jira
+  When I look for a meeting room with name "Paris"
+  Then I will find 1 room
 
 
 
