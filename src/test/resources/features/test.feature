@@ -38,4 +38,9 @@ Feature: Integration tests
   Scenario: New scenario from Jira
     When I look for a meeting room with name "Paris"
     Then I will find 1 room
+    
+  Scenario: test naar Jira
+      When I look for a meeting room with name "Berlin"
+    Then I will find 1 room
+  
 
