@@ -40,7 +40,10 @@ Feature: Integration tests
     Then I will find 1 room
     
   Scenario: test naar Jira
-      When I look for a meeting room with name "Berlin"
+    When I look for a meeting room with name "Berlin"
     Then I will find 1 room
   
+  Scenario: test naar Jira
+    When I look for a meeting room with name "Amsterdam"
+    Then I will find 1 room  
 
